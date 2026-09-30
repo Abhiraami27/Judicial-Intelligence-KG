@@ -1,33 +1,62 @@
-# ⚖️ Judicial Intelligence KG — AI-Powered Legal Knowledge Graph
-
-> **An AI-powered Judicial Intelligence platform that transforms legal documents and case information into a searchable knowledge graph for intelligent legal research and case analysis.**
-
-Judicial Intelligence KG is a **legal-tech and artificial intelligence project** designed to organize judicial information into a structured **Knowledge Graph**.
-
-The platform combines **FastAPI, React, Neo4j, LangChain, LLM-based reasoning, document processing, and legal data retrieval** to provide an intelligent interface for exploring relationships between legal cases, judgments, legal entities, and related information.
-
-The project is designed to make legal research more structured, searchable, and accessible through a combination of **graph-based knowledge representation and AI-powered retrieval**.
+# ⚖️ Judicial Intelligence KG
 
 ---
 
-# 🚀 Key Features
+## 📌 Overview
 
-## 🧠 Judicial Knowledge Graph
+**Judicial Intelligence KG** is an AI-powered legal intelligence application designed to organize, retrieve, and explore judicial information using a **Knowledge Graph architecture**.
 
-The core of the project is a graph-based representation of judicial information.
+The project combines **legal document processing, Knowledge Graphs, Neo4j, FastAPI, React, LangChain, and Large Language Models** to provide an intelligent platform for exploring relationships between cases, legal entities, judgments, courts, and legal provisions.
 
-Instead of storing legal information only as independent documents, the system represents relationships between entities such as:
+The application follows a full-stack architecture:
+
+```text
+User
+  │
+  ▼
+Web Interface
+  │
+  ▼
+React Frontend
+  │
+  ▼
+FastAPI Backend
+  │
+  ├──────────────► Legal Data Retrieval
+  │
+  ├──────────────► LangChain / AI Processing
+  │
+  ▼
+Neo4j Knowledge Graph
+  │
+  ▼
+Connected Judicial Information
+```
+
+---
+
+# ✨ Key Features
+
+The project combines a web-based interface, backend APIs, graph-based legal data, and AI-powered processing.
+
+---
+
+### ⚖️ Judicial Knowledge Graph
+
+The core of the project is a **Knowledge Graph** designed to represent relationships between judicial entities.
+
+The graph can connect information such as:
 
 ```text
 Case
  │
  ├──► Judge
  │
+ ├──► Court
+ │
  ├──► Petitioner
  │
  ├──► Respondent
- │
- ├──► Court
  │
  ├──► Legal Provision
  │
@@ -36,247 +65,351 @@ Case
  └──► Related Case
 ```
 
-This enables relationship-based exploration of judicial information.
+This graph-based approach makes it possible to explore legal information through relationships rather than treating every document as an isolated record.
 
 ---
 
-## 🔎 Intelligent Legal Search
+### 📄 Legal Document Processing
 
-The system provides an intelligent search workflow for retrieving relevant legal information.
+The application works with judicial and legal information and processes the available content for structured retrieval.
 
-Users can search for legal information and explore related entities through the knowledge graph rather than relying only on traditional keyword-based search.
+The processing workflow can be represented as:
+
+```text
+Legal Documents
+      │
+      ▼
+Document Processing
+      │
+      ▼
+Text Extraction
+      │
+      ▼
+Entity Identification
+      │
+      ▼
+Relationship Extraction
+      │
+      ▼
+Knowledge Graph
+```
 
 ---
 
-## 🤖 AI-Powered Legal Intelligence
+### 🧠 AI-Powered Legal Intelligence
 
-The project integrates Large Language Models with legal information retrieval to support:
+The project integrates AI and Large Language Models to support intelligent interaction with judicial information.
 
+AI processing can be used for:
+
+* Legal information retrieval
+* Context-aware responses
+* Judicial information analysis
 * Legal document understanding
-* Context-aware information retrieval
-* Case analysis
-* Judicial information summarization
-* Natural-language interaction with legal data
-
-The AI layer is designed to work together with structured graph information instead of generating responses independently.
+* Information summarization
+* Natural-language queries
 
 ---
 
-## 🕸️ Graph-Based Relationship Exploration
+### 🔎 Intelligent Legal Search
 
-Neo4j is used to represent relationships between legal entities.
+Users can search for judicial information through the application interface.
+
+The system can combine:
+
+```text
+User Query
+    │
+    ▼
+Query Processing
+    │
+    ▼
+Knowledge Retrieval
+    │
+    ▼
+Neo4j Graph Search
+    │
+    ▼
+Relevant Judicial Information
+```
+
+---
+
+### 🕸️ Graph-Based Relationship Exploration
+
+The Knowledge Graph allows relationships between legal entities to be explored.
 
 Example:
 
 ```text
                  ┌──────────────┐
-                 │    JUDGE     │
+                 │     Judge    │
                  └──────┬───────┘
                         │
-                     HEARD
+                      HEARD
                         │
                         ▼
                  ┌──────────────┐
-                 │     CASE     │
+                 │     Case     │
                  └──────┬───────┘
                         │
-              ┌─────────┼─────────┐
-              │         │         │
-              ▼         ▼         ▼
-          PARTIES    CITES     INVOLVES
-              │         │         │
-              ▼         ▼         ▼
-           PERSON      LAW      COURT
+             ┌──────────┼──────────┐
+             │          │          │
+             ▼          ▼          ▼
+           CITES     INVOLVES    BEFORE
+             │          │          │
+             ▼          ▼          ▼
+          Legal Act   Person     Court
 ```
-
-This graph structure allows connections between legal entities to be explored efficiently.
 
 ---
 
-# 🏗️ System Architecture
+### 📊 Judicial Information Visualization
+
+The frontend provides a web-based interface for interacting with judicial information and exploring relationships represented within the Knowledge Graph.
+
+The graph-oriented approach makes complex relationships easier to inspect and understand.
+
+---
+
+# 🏗️ Architecture
 
 ```text
-                    ┌───────────────────────┐
-                    │         USER          │
-                    └───────────┬───────────┘
-                                │
-                                ▼
-                    ┌───────────────────────┐
-                    │    REACT FRONTEND     │
-                    │                       │
-                    │ Search | Dashboard    │
-                    │ Graph Visualization   │
-                    └───────────┬───────────┘
-                                │
-                         HTTP / REST API
-                                │
-                                ▼
-                    ┌───────────────────────┐
-                    │     FASTAPI BACKEND   │
-                    │                       │
-                    │ API + AI Processing   │
-                    └───────────┬───────────┘
-                                │
-              ┌─────────────────┼──────────────────┐
-              │                 │                  │
-              ▼                 ▼                  ▼
-       ┌────────────┐    ┌────────────┐    ┌────────────┐
-       │   NEO4J    │    │ LANGCHAIN  │    │    LLM     │
-       │ Knowledge  │    │ Retrieval  │    │  Reasoning │
-       │   Graph    │    │   Layer    │    │            │
-       └────────────┘    └────────────┘    └────────────┘
-                                │
-                                ▼
-                       Legal Documents
-                       & External Sources
+                         ┌──────────────────┐
+                         │       USER       │
+                         └────────┬─────────┘
+                                  │
+                                  ▼
+                         ┌──────────────────┐
+                         │  React Frontend  │
+                         │                  │
+                         │ Search / Graph   │
+                         │ Visualization    │
+                         └────────┬─────────┘
+                                  │
+                                  ▼
+                         ┌──────────────────┐
+                         │ FastAPI Backend  │
+                         │                  │
+                         │ API + AI Logic   │
+                         └────────┬─────────┘
+                                  │
+             ┌────────────────────┼────────────────────┐
+             │                    │                    │
+             ▼                    ▼                    ▼
+      ┌─────────────┐      ┌─────────────┐     ┌─────────────┐
+      │    Neo4j    │      │  LangChain  │     │     LLM     │
+      │ Knowledge   │      │ Retrieval   │     │ AI / Query  │
+      │    Graph    │      │    Layer    │     │ Processing  │
+      └─────────────┘      └─────────────┘     └─────────────┘
+             │                    │
+             │                    │
+             └──────────┬─────────┘
+                        │
+                        ▼
+                Judicial Information
 ```
 
 ---
 
-# 🔄 Core Workflow
+# 📂 Project Structure
+
+The repository currently contains the main project inside the `Judicial-Intelligence-KG` directory along with configuration and README files.
+
+```text
+Judicial-Intelligence-KG/
+│
+├── README.md
+│
+├── .gitignore
+│
+├── .npmrc
+│
+├── .config/
+│   └── builderio/
+│
+└── Judicial-Intelligence-KG/
+    │
+    ├── Backend
+    │
+    ├── Frontend
+    │
+    ├── Data
+    │
+    ├── Configuration
+    │
+    └── Application Files
+```
+
+> The internal project structure can evolve as additional backend, frontend, graph, and AI modules are developed.
+
+---
+
+# 🛠️ Technology Stack
+
+| Technology            | Purpose                        |
+| --------------------- | ------------------------------ |
+| Python                | Backend and AI development     |
+| FastAPI               | REST API and backend services  |
+| React                 | Frontend web application       |
+| JavaScript            | Frontend application logic     |
+| Neo4j                 | Knowledge Graph database       |
+| LangChain             | AI and retrieval orchestration |
+| Large Language Models | Natural-language processing    |
+| Legal Data Sources    | Judicial information retrieval |
+| Git                   | Version control                |
+| GitHub                | Source-code hosting            |
+
+---
+
+# 🔄 Judicial Intelligence Workflow
+
+The application follows a multi-stage workflow for converting legal information into an intelligent graph-based system.
+
+---
 
 ## 1️⃣ Legal Data Collection
 
-Legal documents and relevant judicial information are collected and processed.
+Judicial information is collected from available legal data sources.
 
 ```text
 Legal Sources
-      ↓
-Document Collection
-      ↓
-Text Extraction
-      ↓
-Data Processing
+      │
+      ▼
+Judicial Documents
+      │
+      ▼
+Data Collection
 ```
 
 ---
 
 ## 2️⃣ Document Processing
 
-The collected legal content is processed before being incorporated into the knowledge system.
+Collected documents are processed to extract useful information.
 
 ```text
-Raw Documents
-      ↓
+Judicial Document
+      │
+      ▼
 Text Extraction
-      ↓
-Cleaning
-      ↓
-Entity Identification
-      ↓
-Relationship Identification
+      │
+      ▼
+Text Processing
+      │
+      ▼
+Legal Entities
 ```
 
 ---
 
-## 3️⃣ Knowledge Graph Construction
+## 3️⃣ Entity & Relationship Extraction
 
-Extracted entities and relationships are represented in Neo4j.
+Important judicial entities and relationships are identified.
 
 ```text
 Legal Document
-      ↓
+      │
+      ├──► Case
+      ├──► Judge
+      ├──► Court
+      ├──► Party
+      ├──► Legal Provision
+      └──► Judgment
+```
+
+Relationships are then established between the extracted entities.
+
+---
+
+## 4️⃣ Knowledge Graph Creation
+
+The extracted information is stored as nodes and relationships in Neo4j.
+
+```text
 Entities
-      ↓
+   │
+   ▼
+Graph Nodes
+   │
+   ▼
 Relationships
-      ↓
+   │
+   ▼
 Neo4j Knowledge Graph
 ```
 
-Example:
-
-```text
-Case A
-  │
-  ├── CITES ───────► Section 138
-  │
-  ├── HEARD_BY ────► Judge X
-  │
-  ├── BEFORE ──────► High Court
-  │
-  └── RELATED_TO ──► Case B
-```
-
 ---
 
-## 4️⃣ Intelligent Retrieval
+## 5️⃣ Query & Retrieval
 
-When a user asks a question, the system combines the query with available legal knowledge.
+When a user submits a query:
 
 ```text
 User Query
-     ↓
+     │
+     ▼
 FastAPI
-     ↓
+     │
+     ▼
 Query Processing
-     ↓
-Knowledge Retrieval
-     ↓
-Neo4j Graph Search
-     ↓
-Relevant Legal Context
+     │
+     ▼
+Neo4j Retrieval
+     │
+     ▼
+Relevant Graph Information
 ```
 
 ---
 
-## 5️⃣ AI Response Generation
+## 6️⃣ AI-Assisted Response
 
-Retrieved information can then be passed to the AI layer for contextual processing.
+Retrieved information can be processed through the AI layer.
 
 ```text
-User Question
-      ↓
+User Query
+      │
+      ▼
 Graph Retrieval
-      ↓
-Relevant Legal Information
-      ↓
+      │
+      ▼
+Relevant Legal Context
+      │
+      ▼
 LangChain
-      ↓
+      │
+      ▼
 LLM
-      ↓
+      │
+      ▼
 Context-Aware Response
 ```
 
 ---
 
-# 🛠️ Tech Stack
-
-| Component           | Technology                    | Purpose                             |
-| ------------------- | ----------------------------- | ----------------------------------- |
-| Frontend            | React                         | Interactive web interface           |
-| Backend             | FastAPI                       | REST API and backend services       |
-| Graph Database      | Neo4j                         | Judicial knowledge graph            |
-| AI Framework        | LangChain                     | Retrieval and LLM orchestration     |
-| LLM                 | Groq / LLM APIs               | AI-powered reasoning and generation |
-| Document Processing | Python                        | Legal document processing           |
-| Data Retrieval      | Indian Kanoon / legal sources | Judicial information acquisition    |
-| Visualization       | React-based graph UI          | Knowledge graph exploration         |
-| Language            | Python + JavaScript           | Full-stack development              |
-
----
-
 # 🕸️ Knowledge Graph Model
 
-The Judicial Intelligence KG can represent multiple categories of legal entities.
+The Knowledge Graph represents judicial information through connected entities.
 
-### 👨‍⚖️ Judicial Entities
+### ⚖️ Judicial Entities
 
 ```text
+Case
 Judge
 Court
 Bench
-Case
 Judgment
 ```
 
-### 👥 Case Participants
+### 👥 Participants
 
 ```text
 Petitioner
 Respondent
 Advocate
-Organization
 Person
+Organization
 ```
 
 ### 📜 Legal Entities
@@ -289,535 +422,447 @@ Legal Provision
 Precedent
 ```
 
-### 🔗 Example Relationships
+### 🔗 Relationships
 
 ```text
 CASE ───────► HEARD_BY ───────► JUDGE
 
 CASE ───────► BEFORE ──────────► COURT
 
-CASE ───────► CITES ───────────► CASE
-
-CASE ───────► REFERENCES ──────► ACT
-
-CASE ───────► CONTAINS ────────► JUDGMENT
-
 CASE ───────► INVOLVES ────────► PERSON
-```
 
-The exact graph schema can evolve as additional judicial data sources and entity types are integrated.
+CASE ───────► CITES ───────────► LEGAL PROVISION
+
+CASE ───────► RELATED_TO ──────► CASE
+
+CASE ───────► RESULTS_IN ──────► JUDGMENT
+```
 
 ---
 
-# 🔍 Example Legal Intelligence Query
+# 🧩 Core Components
 
-A user could ask a natural-language question such as:
+## `Frontend`
 
-```text
-Which cases are related to a particular legal provision?
-```
-
-The system can conceptually process the request as:
-
-```text
-Natural Language Query
-          ↓
-      Query Parser
-          ↓
-    Graph Retrieval
-          ↓
-  Related Legal Cases
-          ↓
-   Connected Entities
-          ↓
-   AI-Assisted Answer
-```
-
-This approach combines **graph traversal + legal information retrieval + LLM reasoning**.
-
----
-
-# 📊 Knowledge Graph Visualization
-
-One of the major goals of the platform is to make complex legal relationships easier to understand visually.
-
-Example:
-
-```text
-                       ┌──────────────┐
-                       │     JUDGE    │
-                       └──────┬───────┘
-                              │
-                           HEARD
-                              │
-                              ▼
-┌──────────────┐         ┌──────────────┐
-│    COURT     │◄────────│     CASE     │
-└──────────────┘  BEFORE └──────┬───────┘
-                                │
-                    ┌───────────┼───────────┐
-                    │           │           │
-                  CITES      INVOLVES    RELATED
-                    │           │           │
-                    ▼           ▼           ▼
-                 ┌─────┐    ┌───────┐   ┌──────┐
-                 │ ACT │    │PERSON │   │ CASE │
-                 └─────┘    └───────┘   └──────┘
-```
-
-Graph visualization makes it possible to inspect relationships that may be difficult to identify from isolated documents.
-
----
-
-# 📁 Project Structure
-
-```text
-Judicial-Intelligence-KG/
-│
-├── Judicial-Intelligence-KG/
-│   │
-│   ├── backend/
-│   │   ├── main.py
-│   │   ├── routes/
-│   │   ├── services/
-│   │   └── ...
-│   │
-│   ├── frontend/
-│   │   ├── src/
-│   │   ├── components/
-│   │   └── ...
-│   │
-│   ├── data/
-│   │
-│   ├── scripts/
-│   │
-│   └── ...
-│
-├── .config/
-│
-├── .npmrc
-│
-└── README.md
-```
-
-> The project structure may evolve as the application continues to be developed.
-
----
-
-# ⚡ Main Components
-
-## React Frontend
-
-The frontend provides the user-facing interface for:
-
-* Legal search
-* Judicial information exploration
-* Knowledge graph visualization
-* Dashboard-style interaction
-* AI-assisted legal research
-
----
-
-## FastAPI Backend
-
-The backend acts as the central application layer.
+The React frontend provides the user-facing interface.
 
 Responsibilities include:
 
-* API handling
+* Search interface
+* Judicial information display
+* Knowledge graph visualization
+* Dashboard components
+* Communication with backend APIs
+
+---
+
+## `Backend`
+
+The FastAPI backend acts as the central application layer.
+
+Responsibilities include:
+
+* API endpoints
 * Query processing
-* Legal data retrieval
+* Data retrieval
+* Neo4j interaction
 * AI integration
-* Knowledge graph interaction
 * Communication with the frontend
 
 ---
 
-## Neo4j Knowledge Graph
+## `Neo4j`
 
 Neo4j provides the graph database layer.
 
-It stores:
+The database stores:
 
 ```text
 Nodes
-  +
+   +
 Relationships
-  +
+   +
 Properties
 ```
 
-This makes it suitable for representing highly connected judicial information.
+This structure is suitable for representing highly connected judicial information.
 
 ---
 
-## LangChain
+## `LangChain`
 
-LangChain provides the orchestration layer for connecting:
+LangChain provides the orchestration layer between retrieval components and the AI model.
 
 ```text
 User Query
-      ↓
+     │
+     ▼
 Retrieval
-      ↓
+     │
+     ▼
 Context
-      ↓
+     │
+     ▼
 LLM
-      ↓
+     │
+     ▼
 Response
 ```
 
 ---
 
-## Large Language Model
+## `Large Language Model`
 
 The LLM layer supports natural-language interaction with retrieved judicial information.
 
-The project integrates LLM-based processing rather than relying exclusively on traditional database queries.
-
----
-
-# 🎯 Project Objectives
-
-The project focuses on:
-
-* Building a structured judicial knowledge representation
-* Connecting legal entities through meaningful relationships
-* Improving legal information discovery
-* Supporting intelligent judicial research
-* Combining graph databases with generative AI
-* Providing visual exploration of legal relationships
-* Reducing the complexity of navigating large amounts of legal information
-
----
-
-# 💡 Why a Knowledge Graph?
-
-Traditional databases primarily organize information into tables.
-
-Legal information, however, contains many interconnected entities:
-
-```text
-Cases
- │
- ├── Judges
- ├── Courts
- ├── Parties
- ├── Acts
- ├── Sections
- ├── Previous Cases
- └── Judgments
-```
-
-A knowledge graph naturally represents these relationships.
-
-For example:
-
-```text
-Case A
-   │
-   ├── cites → Case B
-   │             │
-   │             └── decided by → Judge X
-   │
-   └── references → Section 138
-```
-
-This enables relationship-based discovery and graph traversal.
-
----
-
-# 🧠 AI + Knowledge Graph
-
-The major concept behind the project is the combination of:
-
-```text
-             ┌──────────────────┐
-             │ Knowledge Graph  │
-             │      Neo4j       │
-             └────────┬─────────┘
-                      │
-                      ▼
-             Relevant Legal Data
-                      │
-                      ▼
-             ┌──────────────────┐
-             │    LangChain     │
-             └────────┬─────────┘
-                      │
-                      ▼
-             ┌──────────────────┐
-             │       LLM        │
-             └────────┬─────────┘
-                      │
-                      ▼
-             Contextual Response
-```
-
-The graph provides structured relationships while the LLM provides natural-language interaction.
-
----
-
-# 🔐 Legal & Responsible AI Considerations
-
-This project is intended as a **research and technology demonstration platform**.
-
-AI-generated information should not be treated as a substitute for:
-
-* Professional legal advice
-* Judicial decisions
-* Qualified legal research
-* Official court records
-
-Legal information should always be verified against authoritative primary sources before being used for professional or legal decision-making.
-
----
-
-# 🔮 Future Enhancements
-
-Potential future improvements include:
-
-* [ ] Advanced semantic search
-* [ ] Hybrid vector + graph retrieval
-* [ ] Citation-aware responses
-* [ ] More court and judgment datasets
-* [ ] Multilingual legal search
-* [ ] Legal document summarization
-* [ ] Case similarity detection
-* [ ] Precedent discovery
-* [ ] Advanced graph analytics
-* [ ] Improved graph visualization
-* [ ] User authentication
-* [ ] Researcher dashboards
-* [ ] Exportable legal research reports
-* [ ] Source-level citation verification
-* [ ] MCP-based legal research tools
-
----
-
-# 🧪 Testing
-
-The application should be tested across the major system layers:
-
-```text
-Frontend
-   ↓
-API
-   ↓
-Data Retrieval
-   ↓
-Neo4j
-   ↓
-AI / LLM
-   ↓
-Response
-```
-
-Testing should verify:
-
-* API availability
-* Database connectivity
-* Graph queries
-* Legal data retrieval
-* AI response generation
-* Frontend/backend communication
-* Graph visualization
+The model can process relevant context retrieved from the Knowledge Graph before generating an answer.
 
 ---
 
 # 🚀 Getting Started
 
-## Prerequisites
+## 1. Clone the Repository
 
-Install the following:
-
-```text
-Python
-Node.js
-npm
-Neo4j
-Git
+```bash
+git clone https://github.com/Abhiraami27/Judicial-Intelligence-KG.git
 ```
 
-Depending on the configured AI and data-retrieval services, the required API keys and environment variables should also be configured.
+Navigate into the repository:
 
----
-
-## Clone Repository
-
-```powershell
-git clone https://github.com/Abhiraami27/Judicial-Intelligence-KG.git
+```bash
 cd Judicial-Intelligence-KG
 ```
 
 ---
 
-## Backend Setup
+# 🐍 2. Backend Setup
 
-Create and activate a Python virtual environment:
+Navigate to the backend project directory.
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+Create a virtual environment:
+
+### Windows
+
+```bash
+python -m venv venv
 ```
 
-Install dependencies:
+Activate it:
 
-```powershell
+```bash
+venv\Scripts\activate
+```
+
+### Linux / macOS
+
+```bash
+python3 -m venv venv
+```
+
+Activate it:
+
+```bash
+source venv/bin/activate
+```
+
+---
+
+# 📦 3. Install Backend Dependencies
+
+If the backend contains a `requirements.txt` file:
+
+```bash
 pip install -r requirements.txt
 ```
 
-Start the FastAPI application using the project's configured entry point.
-
-Example:
-
-```powershell
-uvicorn main:app --reload
-```
-
 ---
 
-## Frontend Setup
+# 🗄️ 4. Configure Neo4j
 
-Install frontend dependencies:
+Start a Neo4j database instance and configure the required connection details.
 
-```powershell
-npm install
-```
-
-Start the development server:
-
-```powershell
-npm run dev
-```
-
-The exact command may depend on the frontend configuration included in the repository.
-
----
-
-# 🔑 Environment Configuration
-
-Create an environment configuration file containing the credentials and connection details required by the application.
-
-Typical configuration categories include:
+Typical configuration includes:
 
 ```text
 Neo4j URI
 Neo4j Username
 Neo4j Password
-
-LLM API Key
-LLM Configuration
-
-Legal Data Source Configuration
-
-Backend API URL
 ```
 
-### Example
+Example:
 
 ```env
 NEO4J_URI=your_neo4j_uri
 NEO4J_USERNAME=your_username
 NEO4J_PASSWORD=your_password
+```
 
+---
+
+# 🔑 5. Configure AI Services
+
+Configure the required LLM/API credentials using environment variables.
+
+Example:
+
+```env
 LLM_API_KEY=your_api_key
-
-BACKEND_URL=http://localhost:8000
 ```
 
-> Never commit API keys, passwords, or other secrets to GitHub.
+> Never commit API keys, passwords, or other sensitive credentials to GitHub.
 
 ---
 
-# 📚 Research Applications
+# ▶️ 6. Start the Backend
 
-The knowledge graph architecture can support research workflows such as:
+From the backend directory:
+
+```bash
+uvicorn main:app --reload
+```
+
+The FastAPI backend can then be accessed through the configured local server.
+
+Swagger API documentation is normally available at:
 
 ```text
-Case Discovery
-     ↓
-Related Cases
-     ↓
-Judges / Courts
-     ↓
-Legal Provisions
-     ↓
-Citations
-     ↓
-Judicial Relationships
+http://127.0.0.1:8000/docs
 ```
-
-This can help researchers explore relationships across large collections of judicial information.
 
 ---
 
-# 🌟 Project Highlights
+# ⚛️ 7. Frontend Setup
+
+Navigate to the frontend directory:
+
+```bash
+cd frontend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Open the frontend using the URL displayed by the development server.
+
+---
+
+# 🧪 Testing
+
+The complete system can be tested across multiple layers:
 
 ```text
-⚖️ Judicial Intelligence
-🧠 AI-Powered Legal Research
-🕸️ Knowledge Graph
-🔗 Neo4j Graph Database
-🤖 Large Language Models
-⛓️ LangChain
-⚡ FastAPI Backend
-⚛️ React Frontend
-🔎 Intelligent Retrieval
-📊 Graph Visualization
-📚 Legal Document Processing
-🔍 Relationship-Based Search
+Frontend
+   │
+   ▼
+Backend API
+   │
+   ▼
+Neo4j
+   │
+   ▼
+Legal Retrieval
+   │
+   ▼
+AI Processing
+   │
+   ▼
+Final Response
 ```
+
+Testing should verify:
+
+* Backend availability
+* Frontend/backend communication
+* Neo4j connectivity
+* Graph creation
+* Graph queries
+* Legal data retrieval
+* AI response generation
+* Knowledge graph visualization
 
 ---
 
-# 🤝 Contributing
+# 🔐 Security Considerations
 
-Contributions are welcome.
+For production deployment:
+
+* Never commit API keys.
+* Keep Neo4j credentials outside source control.
+* Store sensitive configuration in environment variables.
+* Configure CORS appropriately.
+* Enable HTTPS.
+* Validate API inputs.
+* Implement authentication and authorization.
+* Protect database credentials.
+* Monitor backend logs.
+* Keep dependencies updated.
+
+---
+
+# 🌱 Application Concept
+
+Judicial Intelligence KG is designed around the idea of connecting legal information through a structured Knowledge Graph.
+
+Instead of treating judicial documents independently:
 
 ```text
-1. Fork the repository
-2. Create a feature branch
-3. Implement your changes
-4. Test the application
-5. Commit your changes
-6. Push the branch
-7. Open a Pull Request
+Case A
+Case B
+Case C
+Case D
 ```
 
-For major changes, consider opening an issue first to discuss the proposed improvement.
+the system can represent their relationships:
+
+```text
+Case A
+ │
+ ├──► cites ───────► Case B
+ │
+ ├──► involves ────► Person
+ │
+ ├──► before ──────► Court
+ │
+ └──► references ──► Legal Provision
+```
+
+This provides a foundation for relationship-based judicial research.
 
 ---
 
-# 📜 License
+# 📊 Potential Applications
 
-Add an appropriate open-source license to the repository before distributing the project for external use.
+The architecture can support applications such as:
+
+* Judicial research
+* Case discovery
+* Legal document exploration
+* Case relationship analysis
+* Legal provision discovery
+* Precedent exploration
+* Judicial knowledge visualization
+* AI-assisted legal research
+
+---
+
+# 📈 Future Enhancements
+
+Possible future improvements include:
+
+### 🔎 Advanced Search
+
+* Semantic legal search
+* Hybrid graph + vector search
+* Natural-language graph queries
+* Citation-aware search
+
+### 🧠 AI Intelligence
+
+* Legal document summarization
+* Case similarity detection
+* Precedent discovery
+* Context-aware legal Q&A
+* Source-grounded AI responses
+
+### 🕸️ Knowledge Graph
+
+* Larger judicial datasets
+* More court data
+* Advanced relationship types
+* Graph analytics
+* Community and citation analysis
+
+### 📊 Analytics
+
+* Judicial trend visualization
+* Case relationship dashboards
+* Legal provision analytics
+* Interactive graph exploration
+
+### 🌐 Accessibility
+
+* Multilingual legal search
+* Responsive web interface
+* Researcher dashboards
+* Exportable research reports
+
+---
+
+# 🎯 Project Objectives
+
+The project demonstrates practical implementation of:
+
+* Knowledge Graph construction
+* Graph database management
+* Neo4j
+* FastAPI backend development
+* React frontend development
+* REST API integration
+* Legal document processing
+* Natural Language Processing
+* Large Language Models
+* LangChain
+* AI-powered information retrieval
+* Graph visualization
+* Full-stack application development
+
+---
+
+# 📚 Learning Outcomes
+
+Through this project, the following concepts can be practiced:
+
+```text
+Python
+   ↓
+FastAPI
+   ↓
+REST APIs
+   ↓
+Neo4j
+   ↓
+Knowledge Graph
+   ↓
+LangChain
+   ↓
+LLM
+   ↓
+Legal Information Retrieval
+   ↓
+React Frontend
+   ↓
+Full-Stack AI Application
+```
+
+---
+
+# 🌐 Repository
+
+**GitHub Repository:**
+
+https://github.com/Abhiraami27/Judicial-Intelligence-KG
 
 ---
 
 # 👩‍💻 Author
 
-**Abhiraami SP**
+## Abhiraami SP
 
 Integrated M.Tech — Computer Science and Engineering
 Sri Ramakrishna Engineering College
 
-### Areas of Interest
+### GitHub
 
-* Artificial Intelligence
-* Machine Learning
-* Generative AI
-* Knowledge Graphs
-* Natural Language Processing
-* Legal Technology
-* Web Development
-
----
-
-# 🔗 Repository
-
-**GitHub:**
-https://github.com/Abhiraami27/Judicial-Intelligence-KG
+https://github.com/Abhiraami27
 
 ---
 
@@ -825,12 +870,18 @@ https://github.com/Abhiraami27/Judicial-Intelligence-KG
 
 This project is developed for **educational, research, and technological demonstration purposes**.
 
-The system does not provide legal advice and should not be used as a replacement for qualified legal professionals, official court records, or authoritative legal sources.
+The information generated by the system should not be considered a substitute for professional legal advice, official court records, or authoritative legal sources.
+
+Users should verify important legal information against appropriate primary sources.
+
+---
+
+# ⭐ Support
+
+If you find this project useful, consider giving the repository a ⭐ on GitHub.
 
 ---
 
 ## ⚖️ Judicial Intelligence KG
 
-> **Connecting Cases, Laws, Courts, and Judicial Knowledge through Graphs and AI.**
-
----
+**Connecting judicial information through Knowledge Graphs, AI, and intelligent legal retrieval.**
